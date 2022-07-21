@@ -6,11 +6,12 @@ $charachter = [
     'attackPoint' => 8,
     'defensePoint' => 5,
 ];
-echo '<pre>';
+/* echo '<pre>';
 var_dump($charachter);
-echo '</pre>';
+echo '</pre>'; */
+
 foreach ($charachter as $key => $value) {
-    echo $value . '<br>';
+   // echo $value . '<br>';
 }
 
 /*
@@ -23,14 +24,26 @@ You have to use a loop to display all the characteristics now !
 */
 
 $purchases = ["Salad" => 1.03, "Tomato" => 2.3, "Oignon" => 1.85, "Red cabbage" => 0.85];
-sort($purchases);
-$sortedPurchases = count($purchases);
-foreach ($sortedPuchases as $key => $value) {
-    echo $value;
+ksort($purchases);
+var_dump($purchases);
+echo '<br>';
+asort($purchases);
+var_dump($purchases);
+echo '<br>';
+$totalSpending = 0;
+foreach ($purchases as $key => $value) {
+	$totalSpending = $totalSpending + $value;
 }
+echo 'Michel\'s total spending: ' . $totalSpending;
 
+$purchasesArray = [
+	['purchas' => 'Salad', 'price' => '1.03'],
+	['purchas' => 'Tomato', 'price' => '2.3'],
+	['purchas' => 'Oignon', 'price' => '1.85'],
+	['purchas' => 'Red cabbage', 'price' => '0.85']
+];
 
-	/*
+/*
 	- Exercise 1 : 
 		Michel went to the supermarket and bought some food.
 		He used an array to save his spending.
@@ -40,8 +53,28 @@ foreach ($sortedPuchases as $key => $value) {
 	    2. Sort by key in descending order and display the array
 	    3. Use a loop to calculate the total of Michel spendings.
 	*/
+$numbers = array();
+for ($i = 1; $i <= 20; $i++) {
+	$numbers[$i] = "$i";
+}
+/*
+echo '<pre>';
+var_dump($numbers);
+echo '</pre>';
+*/
 
-	/*
+$numbers2 = array();
+$as = 1;
+while ($as <= 20) {
+	$numbers2[] = $as;
+	$as++;
+}
+/* echo '<pre>';
+var_dump($numbers2);
+echo '</pre>'; */
+
+
+/*
 	- Exercise 2 : 
 		Using a loop, fill in a array with every number from 0 to 20.
 		The element 0 will therefore contain 0, the element 1 will contain 1 etc.
@@ -49,12 +82,53 @@ foreach ($sortedPuchases as $key => $value) {
 		Once it's done, try to do it also with the while loop.
 	*/
 
-	/*
+$multiTwo = array();
+for ($numb = 1; $numb < 11; $numb++) {
+	$multiTwo[] = $numb * 2;
+}
+/* echo '<pre>';
+var_dump($multiTwo);
+echo '</pre>';*/
+
+/*
 	-Exercise 3 :
 		Use a loop to create an array.
 		This array will contain the multiplication table of 2.
 		From 1 to 10.
 	*/
+
+$myRandom = [33, 90, 1, 8, 5, 55, 93, 33];
+echo '<br>';
+$maxNum = $myRandom[0];
+foreach ($myRandom as $key => $value) {
+	if ($value > $maxNum) {
+		$maxNum = $value;
+	}
+}
+echo 'Max Number = ' . $maxNum;
+foreach ($myRandom as $key => $value) {
+	if ($value == $maxNum) {
+		echo '<br>';
+		echo 'Max Number\'s position in the array is: ' . $key;
+	}
+}
+
+echo '<br>';
+$minNum = $myRandom[0];
+foreach ($myRandom as $key => $value) {
+	if ($value < $maxNum) {
+		$maxNum = $value;
+	}
+}
+echo 'Min Number = ' . $maxNum;
+foreach ($myRandom as $key => $value) {
+	if ($value == $maxNum) {
+		echo '<br>';
+		echo 'Min Number\'s position in the array is: ' . $key;
+	}
+}
+
+
 
 	/*
 	-Exercise 4 :
