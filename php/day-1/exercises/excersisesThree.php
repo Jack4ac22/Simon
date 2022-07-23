@@ -1,4 +1,13 @@
 <?php
+$avatar = 'https://cdn.pixabay.com/photo/2016/03/31/20/27/avatar-1295773_960_720.png';
+$lastName = 'Tambansi';
+$firstName = 'Bruto';
+$chatractaristic = [
+	'atk' => 15,
+	'dfn' => 10
+];
+//echo "<img src =$avratar>";
+
 $charachter = [
     'firstName' => 'Bruto',
     'avatar' => 'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png',
@@ -100,36 +109,43 @@ echo '</pre>';*/
 $myRandom = [33, 90, 1, 8, 5, 55, 93, 33];
 echo '<br>';
 $maxNum = $myRandom[0];
+$maxNumKey = 0;
 foreach ($myRandom as $key => $value) {
 	if ($value > $maxNum) {
 		$maxNum = $value;
+		$maxNumKey = $key;
 	}
 }
-echo 'Max Number = ' . $maxNum;
+echo 'Max Number = ' . $maxNum . ' Max Number Position = ' . $maxNumKey;
+
+/*
 foreach ($myRandom as $key => $value) {
 	if ($value == $maxNum) {
 		echo '<br>';
 		echo 'Max Number\'s position in the array is: ' . $key;
 	}
-}
+}*/
 
 echo '<br>';
-$minNum = $myRandom[0];
 foreach ($myRandom as $key => $value) {
 	if ($value < $maxNum) {
 		$maxNum = $value;
+		$maxNumKey = $key;
 	}
-}
-echo 'Min Number = ' . $maxNum;
+};
+echo 'Min Number = ' . $maxNum . 'minimun Number position = ' . $maxNumKey;
+
+
+
+$maxNumPosition = 0;
+$myRandom = [33, 90, 1, 8, 5, 55, 93, 33];
+echo '<br>';
 foreach ($myRandom as $key => $value) {
-	if ($value == $maxNum) {
-		echo '<br>';
-		echo 'Min Number\'s position in the array is: ' . $key;
+	if ($value > $myRandom[$maxNumKey]) {
+		$maxNumKey = $key;
 	}
 }
-
-
-
+echo '<p> The maximum number is: ' . $myRandom[$maxNumKey] . ' it\'s position is: </p>' . $maxNumKey;
 	/*
 	-Exercise 4 :
 		Create an array of random numbers.
