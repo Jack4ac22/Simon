@@ -11,27 +11,69 @@
 </head>
 
 <body>
+	<?php if (isset($_POST['submitBTN'])) {
+		$formErrors = false; // variabsle to check if there is any missing enetry;
+	} ?>
 	<form action="" method="post">
 		<h2>Regestration form</h2>
 		<div class="firstName mb-3">
 			<label for="firstName">First name</label>
 			<input type="text" name="firstName" placeholder="enter your first name">
+			<?php if (isset($_POST['submitBTN'])) {
+				if (empty($_POST['firstName'])) {
+					$formErrors = true;
+					echo '<br>' . '<div class="alert alert-danger" role="alert">' . 'First name is required!' . '</div>';
+				}
+			} ?>
 		</div>
 		<div class="lastName mb-3">
 			<label for="lastName">Last name</label>
 			<input type="text" name="lastName" placeholder="enter your Last name">
+			<?php if (isset($_POST['submitBTN'])) {
+				if (empty($_POST['lastName'])) {
+					$formErrors = true;
+					echo '<div class="alert alert-danger" role="alert">' . 'Last name is required!' . '</div>';
+				}
+			} ?>
 		</div>
 		<div class="mb-3">
 			<label for="email">Email Adress</label>
 			<input type="email" name="email" placeholder="enter your email address">
+			<?php if (isset($_POST['submitBTN'])) {
+				// Email entery error check
+				$emailLength = strlen($_POST['email']);
+				if ($emailLength < 8) {
+					$formErrors = true;
+					echo '<div class="alert alert-danger" role="alert">'  . 'Invalid email adress ,it is less than 8 charachters!' . '</div>';
+				} else if ($emailLength > 50) {
+					$formErrors = true;
+					echo '<div class="alert alert-danger" role="alert">'  . 'Invalid email adress ,it is more than 50 charachters!' . '</div>';
+				}
+			} ?>
 		</div>
 		<div class="password mb-3">
-			<label for="Passowrd">Enter your passowrd</label>
-			<input type="password" name="password" placeholder="***********">
-		</div>
-		<div class="re_password mb-3">
-			<label for="passwordConfirm">Re-enter your password</label>
-			<input type="password" name="passwordConfirm" placeholder="***********">
+			<div class="mb-3"> <label for="Passowrd">Enter your passowrd</label>
+				<input type="password" name="password" placeholder="***********">
+			</div>
+			<div class="mb-3"><label for="passwordConfirm">Re-enter your password</label> <input type="password" name="passwordConfirm" placeholder="***********"> </div>
+			<?php if (isset($_POST['submitBTN'])) {
+				// check password
+				$passwordFirst = $_POST['password'];
+				$passwordConfirm = $_POST['passwordConfirm'];
+				$passwordLength = strlen($passwordFirst);
+				if (
+					$passwordFirst !=
+					$passwordConfirm
+				) {
+					$formErrors = true;
+					echo '<div class="alert alert-danger" role="alert">'  . 'Password confirmation does not mach the password!' . '</div>';
+				};
+
+				if ($passwordLength < 8) {
+					$formErrors = true;
+					echo '<div class="alert alert-danger" role="alert">'  . 'Password should be at least 8 charachters!' . '</div>';
+				}
+			} ?>
 		</div>
 		<div class="mb-3 form-check">
 			<input type="checkbox" name="subscribe" class="form-check-input"> <label for="subscribe" class="form-check-label">Recieve our latest updates</label>
@@ -67,42 +109,6 @@ if (isset($_POST['submitBTN'])) {
 	} else {
 		$subscribtionStatus =	'You are not subscribet to our new letter';
 	};
-	$formErrors = false; // variabsle to check if there is any missing enetry;
-	// checking the first and last name enteries.
-	if (empty($_POST['firstName'])) {
-		$formErrors = true;
-		echo '<br>' . '<div class="alert alert-danger" role="alert">' . 'First name is required!' . '</div>';
-	}
-	if (empty($_POST['lastName'])) {
-		$formErrors = true;
-		echo '<div class="alert alert-danger" role="alert">' . 'Last name is required!' . '</div>';
-	}
-	// Email entery error check
-	$emailLength = strlen($_POST['email']);
-	if ($emailLength < 8) {
-		$formErrors = true;
-		echo '<div class="alert alert-danger" role="alert">'  . 'Invalid email adress ,it is less than 8 charachters!' . '</div>';
-	} else if ($emailLength > 50) {
-		$formErrors = true;
-		echo '<div class="alert alert-danger" role="alert">'  . 'Invalid email adress ,it is more than 50 charachters!' . '</div>';
-	}
-	// check password
-	$passwordFirst = $_POST['password'];
-	$passwordConfirm = $_POST['passwordConfirm'];
-	$passwordLength = strlen($passwordFirst);
-	if (
-		$passwordFirst !=
-		$passwordConfirm
-	) {
-		$formErrors = true;
-		echo '<div class="alert alert-danger" role="alert">'  . 'Password confirmation does not mach the password!' . '</div>';
-	};
-
-	if ($passwordLength < 8) {
-		$formErrors = true;
-		echo '<div class="alert alert-danger" role="alert">'  . 'Password should be at least 8 charachters!' . '</div>';
-	}
-
 	if ($formErrors == false) {
 
 		echo '<div class="alert alert-success" role="alert">' .
