@@ -14,13 +14,14 @@ if (isset($_POST['submitBTN'])) {
     $email = $_POST['email'];
     $password1 = $_POST['password1'];
     $password2 = $_POST['password2'];
+    $subscribtionStatus;
     $formError = array(); // defining the error as an array so the check of existing error will be based on the length or the array which will contain the errores as values to be displayed in a message.
 }
 function required($variable, $Message, $input)
 {
     if (isset($_POST['submitBTN'])) {
         if (empty($variable)) {
-            $formError[] = "$input";
+            $GLOBALS['formError'][] = $input;
             echo $Message . ' is required !!!';
         }
     }
@@ -35,9 +36,8 @@ function checkError($array)
 };
 function emailCheck($string)
 {
-    
     if (strlen($string) < 8 || strlen($string) > 50) {
-        $GLOBALS['formError'][] = "Email";
+        $GLOBALS['formError'][] = "provided Email address is not valid.";
         echo '<br>' . 'Invalid Email address !!!' . '<br>' . 'email address should be 8-50 characters.';
     }
 };
@@ -59,11 +59,16 @@ function formErrors($form)
         foreach ($form as $key => $value) {
             echo  '<br>' . '-' . $value . ".";
         }
+    } else {
+        echo 'Thank you for filling all the fields.';
     }
 };
-echo '<pre>';
-var_dump($_GET);
-echo '</pre>';
+function checkItemToDisplay($item, $title)
+{
+    if (!empty($item)) {
+        echo '<br>' . $title . ' : ' . $item;
+    }
+};
 
 ?>
 
@@ -75,7 +80,7 @@ echo '</pre>';
                 <div class="firstNameError">
                     <?php
                     if (isset($_POST['submitBTN'])) {
-                        required($firstName, 'first name', 'first name');
+                        required($firstName, 'first name', 'first name is not provided.');
                         //checkError();
                     }
                     ?>
@@ -85,7 +90,7 @@ echo '</pre>';
                 <div class="lastNameElements"><label for="lastName">last name: </label> <input type="text" name="lastName"></div>
                 <div class="lastNameError">
                     <?php if (isset($_POST['submitBTN'])) {
-                        required($lastName, 'Last name', 'last name');
+                        required($lastName, 'Last name', 'last name is not provided.');
                         //checkError();
                     }
                     ?>
@@ -95,9 +100,9 @@ echo '</pre>';
                 <div class="emailElements"><label for="email">email adress: </label> <input type="email" name="email"></div>
                 <div class="emailError">
                     <?php if (isset($_POST['submitBTN'])) {
-                        required($email, 'email adress', 'Email address');
+                        required($email, 'email adress', 'Email address is not provided.');
                         emailCheck($email);
-                        checkError($formError);
+                        // checkError($formError);
                     }
                     ?>
                 </div>
@@ -122,28 +127,61 @@ echo '</pre>';
                             <?php
                             if (isset($_POST['submitBTN'])) {
                                 required($password2, 'password', 'password');
-                                passwordCheck($password2, 'passowrd length');
+                                passwordCheck($password2, 'passowrd re-entery length');
                                 // checkError();
                             }
                             ?>
                         </div>
                     </div>
                 </div>
-                <div class="newsContainer">
-                    <div class="newsElements"><label for="news">Recieve our news letter </label> <input type="checkbox" name="news"></div>
+                <div class="paswordsMatchingError">
+                    <?php if (isset($_POST['submitBTN'])) {
+                        if ($password1 != $password2) {
+                            $formError[] = 'Passwords do not match.';
+                        };
+                    } ?>
                 </div>
-                <div class="paswordsMatchingError"></div>
             </div>
-            <div class="buttonContainer"><button type="submit" name="submitBTN" class="submitBTN">submit</button></div>
+            <div class="newsContainer">
+                <div class="newsElements"><label for="news">Recieve our newsletter </label><input type="checkbox" name="news"></div>
+                <?php if (isset($_POST['submitBTN'])) {
+                    if ($_POST['news'] == 'on') {
+
+                        $subscribtionStatus = 'you are subscribed to our newsletter';
+                    } else {
+
+                        $subscribtionStatus =    'You are not subscribet to our new letter';
+                    };
+                } ?>
+            </div>
+            <div class="buttonContainer"><button type="submit" name="submitBTN" class="submitBTN">submit</button>
+
+            </div>
             <div class="FinalMessage">
                 <?php if (isset($_POST['submitBTN'])) {
                     formErrors($formError);
-                }
-                ?>
+                    echo '<br>';
+                    if (count($formError) == 0) {
+                        echo  '<p>' . 'Your regestration is completed, your enteries are:' . '</p>';
+                    } else {
+                        echo '<p>' . 'your enteries are: ' . ' <br>' . '</p>';
+                    }
+                    checkItemToDisplay($firstName, 'first name');
+                    checkItemToDisplay($lastName, 'Last name');
+                    checkItemToDisplay($email, 'email adress');
+                    checkItemToDisplay($password1, 'password');
+                    checkItemToDisplay($password2, 'password re-entery');
+                    echo '<p>' . $subscribtionStatus . '</p>';
+                } ?>
             </div>
         </form>
 
     </div>
 </body>
+<?php
+echo '<pre>';
+var_dump($_GET);
+echo '</pre>';
+?>
 
 </html>
