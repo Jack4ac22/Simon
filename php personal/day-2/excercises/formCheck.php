@@ -35,6 +35,7 @@ function checkError($array)
 };
 function emailCheck($string)
 {
+    
     if (strlen($string) < 8 || strlen($string) > 50) {
         $GLOBALS['formError'][] = "Email";
         echo '<br>' . 'Invalid Email address !!!' . '<br>' . 'email address should be 8-50 characters.';
