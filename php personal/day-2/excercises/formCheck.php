@@ -144,9 +144,12 @@ function checkItemToDisplay($item, $title)
             </div>
             <div class="newsContainer">
                 <div class="newsElements"><label for="news">Recieve our newsletter </label><input type="checkbox" name="news"></div>
-                <?php if (isset($_POST['submitBTN'])) {
-                    if ($_POST['news'] == 'on') {
-
+                <?php
+                echo '<pre>';
+                var_dump($_POST);
+                echo '</pre>';
+                if (isset($_POST['submitBTN'])) {
+                    if (isset($_POST['news'])) {
                         $subscribtionStatus = 'you are subscribed to our newsletter';
                     } else {
 
@@ -161,10 +164,10 @@ function checkItemToDisplay($item, $title)
                 <?php if (isset($_POST['submitBTN'])) {
                     formErrors($formError);
                     echo '<br>';
-                    if (count($formError) == 0) {
-                        echo  '<p>' . 'Your regestration is completed, your enteries are:' . '</p>';
-                    } else {
+                    if (count($formError) > 0) {
                         echo '<p>' . 'your enteries are: ' . ' <br>' . '</p>';
+                    } else {
+                        echo  '<p>' . 'Your regestration is completed, your enteries are:' . '</p>';
                     }
                     checkItemToDisplay($firstName, 'first name');
                     checkItemToDisplay($lastName, 'Last name');
@@ -178,10 +181,6 @@ function checkItemToDisplay($item, $title)
 
     </div>
 </body>
-<?php
-echo '<pre>';
-var_dump($_GET);
-echo '</pre>';
-?>
+
 
 </html>

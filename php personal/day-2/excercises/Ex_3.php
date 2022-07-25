@@ -16,9 +16,10 @@
 	} ?>
 	<form action="" method="post">
 		<h2>Regestration form</h2>
+		<p class="redText">* required field</p>
 		<div class="firstName mb-3">
 			<label for="firstName">First name</label>
-			<input type="text" name="firstName" placeholder="enter your first name">
+			<input type="text" name="firstName" placeholder="enter your first name"> <span class="redText"> *</span>
 			<?php if (isset($_POST['submitBTN'])) {
 				if (empty($_POST['firstName'])) {
 					$formErrors = true;
@@ -28,7 +29,7 @@
 		</div>
 		<div class="lastName mb-3">
 			<label for="lastName">Last name</label>
-			<input type="text" name="lastName" placeholder="enter your Last name">
+			<input type="text" name="lastName" placeholder="enter your Last name"><span class="redText"> *</span>
 			<?php if (isset($_POST['submitBTN'])) {
 				if (empty($_POST['lastName'])) {
 					$formErrors = true;
@@ -38,7 +39,7 @@
 		</div>
 		<div class="mb-3">
 			<label for="email">Email Adress</label>
-			<input type="email" name="email" placeholder="enter your email address">
+			<input type="email" name="email" placeholder="enter your email address"><span class="redText"> *</span>
 			<?php if (isset($_POST['submitBTN'])) {
 				// Email entery error check
 				$emailLength = strlen($_POST['email']);
@@ -53,9 +54,9 @@
 		</div>
 		<div class="password mb-3">
 			<div class="mb-3"> <label for="Passowrd">Enter your passowrd</label>
-				<input type="password" name="password" placeholder="***********">
+				<input type="password" name="password" placeholder="***********"><span class="redText"> *</span>
 			</div>
-			<div class="mb-3"><label for="passwordConfirm">Re-enter your password</label> <input type="password" name="passwordConfirm" placeholder="***********"> </div>
+			<div class="mb-3"><label for="passwordConfirm">Re-enter your password</label> <input type="password" name="passwordConfirm" placeholder="***********"><span class="redText"> *</span> </div>
 			<?php if (isset($_POST['submitBTN'])) {
 				// check password
 				$passwordFirst = $_POST['password'];
@@ -82,6 +83,10 @@
 	</form>
 </body>
 <style>
+	.redText {
+		color: red;
+	}
+
 	form {
 		width: 80%;
 		display: flex;
@@ -104,10 +109,10 @@
 
 <?php
 if (isset($_POST['submitBTN'])) {
-	if ($_POST['subscribe'] == 'on') {
-		$subscribtionStatus = 'you are subscribed to our news letter';
+	if (isset($_POST['subscribe'])) {
+		$subscribtionStatus = 'you are subscribed to our newsletter';
 	} else {
-		$subscribtionStatus =	'You are not subscribet to our new letter';
+		$subscribtionStatus =	'You are not subscribet to our newletter';
 	};
 	if ($formErrors == false) {
 

@@ -10,9 +10,7 @@
 
 <body>
     <?php
-    echo '<pre>';
-    var_dump($_GET);
-    echo '</pre>';
+    
     echo strtotime('now') . '<br>';
     echo strtotime('now') . '<br>';
     $calculation =  strtotime('now') - strtotime($_GET['datePicker']);
