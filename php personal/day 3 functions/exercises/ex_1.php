@@ -104,13 +104,13 @@ Write a function that:
 
 echo '<hr>';
 echo '<p style="font-weight: 900"> EXERCISE 5 </p>';
-
+var_dump(str_split('asddsa'));
 function PaliCheck($text)
 {
     $matchingError = 0;
     $length = strlen($text);
-    for ($i = 0; $i = $length / 2 - $length % 2; $i++) {
-        $textArray = str_split($text);
+    $textArray = str_split(strtolower($text));
+    for ($i = 0; $i < $length / 2 - $length % 2; $i++) {
         if ($textArray[$i] != $textArray[$length - $i - 1]) {
             $matchingError++;
             break;
@@ -122,7 +122,7 @@ function PaliCheck($text)
         echo 'it is a palindrom';
     }
 }
-PaliCheck('baassab');
+PaliCheck('Asdffdsa');
 
 /*
 -- Exercice 5
