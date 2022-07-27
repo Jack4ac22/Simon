@@ -32,7 +32,7 @@ echo '<hr>';
 echo '<p style="font-weight: 900"> EXERCISE 2 </p>';
 function htmlImages($source)
 {
-    echo "<img src='$source' width:'100px' >";
+    echo "<img src='$source' width='100px'>";
 }
 
 htmlImages('https://cdn.pixabay.com/photo/2022/07/13/11/56/cat-7319151_960_720.jpg');
@@ -104,25 +104,30 @@ Write a function that:
 
 echo '<hr>';
 echo '<p style="font-weight: 900"> EXERCISE 5 </p>';
-var_dump(str_split('asddsa'));
+//var_dump(str_split('asddsa'));
 function PaliCheck($text)
 {
     $matchingError = 0;
     $length = strlen($text);
     $textArray = str_split(strtolower($text));
-    for ($i = 0; $i < $length / 2 - $length % 2; $i++) {
+    for ($i = 0; $i < $length / 2; $i++) {
         if ($textArray[$i] != $textArray[$length - $i - 1]) {
             $matchingError++;
             break;
         }
     }
     if ($matchingError > 0) {
-        echo 'it is not a palindrome.';
+        echo '"' . $text . '"' . ' is not a palindrome.';
     } else {
-        echo 'it is a palindrom';
+        echo '"' . $text . '"' .  ' is a palindrom';
     }
 }
 PaliCheck('Asdffdsa');
+//alternative solution
+function paliCheck2($text)
+{
+    $length = strlen($text) - 1;
+}
 
 /*
 -- Exercice 5
@@ -142,7 +147,7 @@ function primCheck($number)
     $divi = 0;
     for ($i = 2; $i < $number; $i++) {
         if ($number % $i == 0) {
-            $divi++;
+            $divi++; // we can use return to exit the loop and then we return after the loop that it is as the loop ended without finding any 
         }
     }
     if ($divi > 0) {
@@ -165,16 +170,16 @@ echo '<p style="font-weight: 900"> EXERCISE 7 </p>';
 function reverse($array)
 {
     $variable = 0;
-    for ($i = 0; $i < count($array) / 2 - count($array) % 2; $i++) {
+    for ($i = 0; $i < count($array) / 2; $i++) {
         $variable = $array[$i];
         $array[$i] = $array[count($array) - $i - 1];
         $array[count($array) - $i - 1] = $variable;
     }
 
-    print_r($array);
+    return $array;
 }
 
-reverse([1, 2, 3, 4, 5, 6, 7, 8]);
+print_r(reverse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 /*
 -- Exercice 7 :
 	Write a PHP function that return the reverse(mirror) of an array.

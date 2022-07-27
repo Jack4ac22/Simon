@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,6 +74,8 @@ function checkItemToDisplay($item, $title)
 ?>
 
 <body>
+    <?php include '../../day-4files-cockies/nav.html';
+    ?>
     <div class="formContainer">
         <form action="" method="post" class="form">
             <div class="firstNameContainer">
