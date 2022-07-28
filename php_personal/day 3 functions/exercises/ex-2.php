@@ -39,21 +39,53 @@ echo isOrder([1, 2, 3, 4, 5]);
 //to be worked on later
 echo '<hr>';
 echo '<p style="font-weight: 900"> EXERCISE 3 </p>';
+function isOrdered($array)
+{
+	$count = count($array) - 1;
+	for ($i = 1; $i < $count; $i++) {
+		if ($array[$i - 1] > $array[$i]) {
+			return false;
+		}
+	}
+	return true;
+};
+function orderMyArray($array)
+{
+	if (isOrdered($array) == true) {
+		return $array;
+	} else {
+		$savingSpot = '';
+		$count = count($array) - 1;
+		for ($o = 1; $o <= $count; $o++) {
+			echo 'last position is : ' . $array[$o - 1] .  'current position is : ' . $array[$o] . '<br>';
+
+			if ($array[$o - 1] > $array[$o]) {
+				$savingSpot = $array[$o - 1];
+				$array[$o - 1] = $array[$o];
+				$array[$o] = $savingSpot;
+			}
+		}
+		return orderMyArray($array);
+	}
+}
+$test = [6, 5, 4, 3, 2, 1];
+var_dump(orderMyArray($test));
+
+
 function orderArray($array)
 {
 	for ($i1 = 1; $i1 < count($array) - 1; $i1++) {
 		$savingSpot = '';
-		if ($array[$i1 - 1] < $array[$i1]) {
-			return $array;
-		} else {
+		if ($array[$i1 - 1] > $array[$i1]) {
 			for ($o = 1; $o < count($array) - 1; $o++) {
 				$savingSpot = $array[$o - 1];
 				$array[$o - 1] = $array[$o];
 				$array[$o] = $savingSpot;
 				//[$array[$o - 1], $array[$o]] = [$array[$o], $array[$o - 1]];
 			}
-		}
+		} else break;
 	}
+	return $array;
 };
 $test = [5, 4, 3, 2, 1];
 echo '<pre>';
