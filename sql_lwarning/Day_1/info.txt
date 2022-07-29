@@ -1,0 +1,28 @@
+data base is a collection of data;
+DB stand for data base.
+DBSM Data base management system: that is the system which is used to manipulate the data, add remove and or edit.
+Some of DBSM: MYSQL, MariaDB, Oracle;
+
+the structure or architecture: 1- tier: on a single compute there is one cumputer which has the datbase and app which is normally used in the development. 2- DBMS architecture: when there are client, server and dataBase.that will provide better secrity. 
+there are multiple types of databases, that depend on the purpose of using it. 
+** relational modle: it hase multiple tables where every table has some atributes and represent an entity. 
+* eatch table represent one entity, 
+* the table containes attrubutes which.
+* the tuple/ the row which will represent one set of informations.
+* degree/ number of attributes.
+* the keys:
+
+** relational model integrity: 
+* domain constrain: concern the data type where we can not enter anything that dose not fit the defined type of data.
+* key constrain: it is a unique code that represent the data of one rwo or a set of information. the primary key is the name that is given to be able to identify each rwo. 
+* referential intefrity: forigne key is the primary key of another entity of data. 
+* operations: inserting new data, delete new data, update the data, select and read. ** crud operations: creat, read, update, delete.
+
+** keys: * candidates: are the possible key to be Primary. *primarry is the chosen one. *alternative. * forign * composed key is the key that has multiple 
+
+**EA diagram : Entity Associatyin duagram which is visual representation of the data base.  it helps to determene tables and attributes and relations. 
+* component: entites, attributes, keys.
+* the relationships are: 1- one to many: that mean we need to use a forigne key in the  side of the "one" side which is going to be the primarry key of the "many" side. 2- one to one is simple and not so commone. 3= many to many: we need an intermediate table that will be in-between  where we can use the primary key of the two main table as forign keys in the intermediate table. 
+
+
+**** varchar: is a short in length, if we need a lengthy one, we can use text
