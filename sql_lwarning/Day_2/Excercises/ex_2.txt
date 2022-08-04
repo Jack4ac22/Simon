@@ -1,0 +1,42 @@
+-- Explanation :
+
+Now, there is a 'novels' table that has the same fields as the 'books' table.
+For this exercises, use union command (cf union.sql file or check this link : https://www.w3schools.com/sql/sql_union.asp).
+
+-- Queries :
+	- Recover all novels and all books in one query.
+
+SELECT title, price, publication_date FROM Books
+UNION
+SELECT title, price, publication_date FROM novels
+
+
+	- Collect all novels and all books from/since 2018
+
+SELECT title, price, publication_date FROM Books
+WHERE publication_date > date '2018-01-01'
+UNION
+SELECT title, price, publication_date FROM novels
+WHERE publication_date > date '2018-01-01'
+
+
+	- Collect all the novels and all the books with the author.	
+
+SELECT title, author_id FROM Books
+UNION
+SELECT title, author_id FROM novels
+
+	- Get the total price per author (books and novels combined).
+
+select author_id, SUM(price) 
+FROM (SELECT title, price, author_id FROM Books
+UNION
+ SELECT title, price, author_id FROM novels)
+ GROUP BY author_id
+
+	- Get the total price for all books AND all novels (books and novels seperated).
+
+SELECT price, title FROM books;
+SELECT price, title FROM novels;
+
+

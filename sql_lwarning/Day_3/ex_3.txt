@@ -1,0 +1,40 @@
+Write the SQL queries corresponding to the following questions:
+
+(a) Retrieve artists under 50 years old.
+
+SELECT * FROM artists
+WHERE birth_year < year(NOW()) - '50'
+
+
+(b) Retrieve all gender from artists (without duplicate)
+
+SELECT DISTINCT gender FROM artists
+
+(c) Retrieve songs that begin with the letter 's'.
+
+SELECT * FROM songs
+WHERE title like 's%'
+
+(d) Retrieve songs that end with the letter 's'.
+
+SELECT * FROM songs
+WHERE title LIKE '%s'
+
+(e) Get the number of playlists, all users combined
+
+SELECT COUNT(*) FROM playlists
+
+(f) For each song, display the name and count how many times it appears in a playlist.
+
+SELECT songs.title, COUNT(playlists_songs.song_id) 
+FROM songs INNER JOIN playlists_songs 
+ON songs.id = playlists_songs.song_id 
+GROUP BY playlists_songs.song_id
+
+(g) Retrieve all users who have at least one music from 'Madonna' on one of their
+playlist.
+
+
+
+(h)Count the number of users who have at least one 'Madonna' music on one of
+their playlist

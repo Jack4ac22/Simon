@@ -1,0 +1,35 @@
+SQL JOIN
+========
+
+Join is used to link tables according to table relationships: foreign key-primary key. It alinks one attribute of the first table with another one of the second table. However, we will mostly use innerjoin.
+
+What is the INNER JOIN?
+----------------------
+
+It grabs al the common data from both tables. Imagine you have table authors and table books. There can be authors who didn't write anything/the books aren't in the library. INNER JOIN only grabs those authors that have a book: When there is at least one record matching criteria (one foreign key that matches the primary key of one table), it returns that record. INNER JOIN should be after the FROM and WHERE statement. In order to get a result, the 2 tables have to have something in common.
+
+SELECT *
+FROM table1
+INNER JOIN table2 ON table1.pk = table2.fk
+
+pk being the primary key and fk being the foreign key.
+
+SELECT *
+FROM authors
+INNER JOIN books ON authors.id = books.author_id;
+
+If you are having trouble, you can use the conceptor as well, it visualizes your database and makes it easier to spot the structure. You can keep making tables with INNER JOIN, for example for orders (inner join between users and products), then INNER JOIN again for order details etc.
+
+
+SELECT *
+FROM users
+INNER JOIN orders ON users.id = orders.user_id
+INNER JOIN order_deails ON orders.id = order_details.order_id
+INNER JOIN books ON books.id = order_details.book_id
+WHERE users.id = 1
+
+SELECT *
+FROM  users
+INNER JOIN orders ON user.id = orders.user_id
+
+Using left and or right join all take or highlight portion of the targeted table.
