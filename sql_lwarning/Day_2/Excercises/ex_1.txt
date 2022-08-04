@@ -1,0 +1,134 @@
+Part 1 :
+
+- Get all the information from each books:
+
+SELECT * 
+FROM books
+
+
+- Get the title of each book
+
+SELECT title
+FROM books
+
+- Get the title and publication date of each book
+
+SELECT CONCAT(title, '(', publication_date,')' )AS
+CONCAT 
+FROM `books`
+
+Part 2 :
+
+- Retrieve the title of each book, sorted alphabetically
+
+SELECT title
+FROM `books`
+ORDER BY title ASC
+
+- List all authors in alphabetical order and without duplicate
+
+SELECT DISTINCT name
+FROM `authors`
+ORDER BY name ASC
+
+Part 3:
+
+- Recover the book with id 5
+
+SELECT *
+FROM `books`
+WHERE id = 5
+
+- Find books released between 2000 and 2010
+
+SELECT *
+FROM books
+WHERE publication_date > '2000-01-01' AND publication_date < '2010-12-31'  
+
+- Find books that did not come out between '2000' and '2010'
+
+SELECT *
+
+
+
+Part 4:
+
+- Recover all books starting with "Lord of the ring"
+
+SELECT *
+FROM `books`
+WHERE title LIKE '%Lord of the ring%'
+
+- Get all the books from the author "Tolkien" (you have to know the author id)
+
+SELECT * 
+FROM `books`
+WHERE author_id = (SELECT id 
+FROM `authors`
+WHERE name LIKE '%Tolkien%'
+)
+
+- Get all the author's books that are not "Tolkien"
+
+SELECT * 
+FROM `books`
+WHERE author_id IN (SELECT id 
+FROM `authors`
+WHERE name NOT LIKE '%T%o%l%k%i%e%n%'
+)
+
+Part 5:
+- Recover all books from newest to oldest
+
+SELECT * 
+FROM `books`
+ORDER BY publication_date DESC
+
+- Count the number of books by each author
+
+SELECT COUNT(title)
+FROM `books`
+GROUP BY author_id
+
+
+Part 6
+- List only the first 5 books
+
+select * 
+from books
+limit 5
+
+- List the last 4 books (from newest to oldest)
+
+select * 
+from books
+ORDER by publication_date DESC
+limit 4
+
+Part 7:
+
+- Get the sum of all the book's price (total amount of all books)
+
+select SUM(price)
+FROM books
+
+- Get the sum of books price PER author_id. 
+
+select author_id, SUM(price)
+FROM books
+GROUP BY author_id
+
+Part 8:
+- Update all books with author_id = 2.
+Those books all cost now 10.
+
+UPDATE books
+SET price = 10
+WHERE author_id = 5;
+
+- Update all books with author_id = 5.
+Those books all cost now 5 more euro than previous price.
+
+UPDATE books
+SET price = price + 3,5
+WHERE author_id = 5;

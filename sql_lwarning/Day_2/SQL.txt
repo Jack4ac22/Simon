@@ -1,0 +1,27 @@
+sql stands for structured query language. it help to CRUD (creat  read update and delelte).
+some roles,: the star sympole is the uneversal signe which refere to all attributes.
+strings prefere to have single quote. Dates are strings and takes single quotes. names: should avoid special charecters, and avoid upperCase. 
+The Commandes: select:  we start by writing select to select some attributes, not the data which is contained in the database under the attributes. to select multiple attributes we can use built in functiones such as: concat, left and others.
+we can add filters suh as {=} and {IN(1,2,5)} DELETE, CREAT, UPDATE.
+
+order 
+select the table then FROM to define the targeted attribute then ORDER 
+we can group the results by attrubutes. 
+
+select gender, COUNT (director_id)
+FROM directors 
+GROUP By gender
+
+
+enum style is to set a predefined values
+
+we use HAVING ehrn we have a COUNT command or other similare commands.
+LIKE operator: usin % affter the data. in the WHWERE {attribute} LIKE 'Steven%' or '%s%'
+_ is used with LIKE and it means one character such as 200_ which can mean any thing from 2000 to 2009;
+the function counte will count the numbers of rows that contain a specific data . 
+AVG SUM MIN and MAx aree commandes that does what there name indicates that they do! 
+we can personalize commandes. 
+
+
+
+
