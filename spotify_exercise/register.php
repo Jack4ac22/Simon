@@ -11,7 +11,7 @@
 <body>
 
     <?php
-    if (!$_COOKIE['email']) {
+    if (!isset($_COOKIE['email'])) {
         require_once 'nav.html';
     } else {
         require_once 'nav_logedIn.html';
@@ -85,7 +85,7 @@
                 // Insert user in the DB
                 $query = "INSERT INTO users(username, email, password , picture)
                 VALUES('$username', '$email', '$password', '$filePath')";
-
+                echo $query;
                 $result = mysqli_query($conn, $query);
 
 
