@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index Jax</title>
+  </head>
+  <body>
+    <form method="post">
+      <!-- we can use AJAX, and the button name is not sent -->
+      <input type="submit" value="Click Here" />
+      <script>
+        document
+          .querySelector("form")
+          .addEventListener("submit", function (event) {
+            //preventing the refresh behavior
+            event.preventDefault();
+            let data = this,
+            fetch("simple.php", {
+              method: "post",
+              body: new FormData(data),
+            })
+              .then((res) => res.text())
+              .then(function (result) {
+                console.log(result);
+              });
+          });
+      </script>
+    </form>
+  </body>
+</html>

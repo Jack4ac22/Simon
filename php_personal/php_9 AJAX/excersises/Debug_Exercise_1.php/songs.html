@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Songs List</title>
+  </head>
+
+  <body>
+    <h2>Songs List</h2>
+
+    <label for="sort"></label>
+    <select name="filter" id="sort">
+      <option value="asc">Title ASC</option>
+      <option value="desc">Title DESC</option>
+    </select>
+    <div id="songs"></div>
+    <script>
+      fetch("get-songs.php", { method: "post", body: formData })
+        .then((res) => res.text())
+        .then(function (results) {
+          console.log(results);
+          document.getElementById("songs").innerHTML = result;
+        });
+      document.getElementById("sort").addEventListener("change", function (e) {
+        let formData = new FormData();
+        formData.append("orderby", this.value);
+        fetch("get-songs.php", {
+          method: "post",
+          body: formData,
+        })
+          .then((res) => res.text())
+          .then(function (result) {
+            // Once the AJAX call was made
+            console.log(result);
+            document.getElementById("songs").innerHTML = result;
+          });
+      });
+    </script>
+  </body>
+</html>

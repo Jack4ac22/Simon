@@ -45,7 +45,7 @@
             if (password_verify($_POST['password'], $user['password'])) {
                 echo 'Log-in successfully.';
                 setcookie('email', $email);
-                header('location:http://localhost:8888/Simon/spotify_exercise/loged_in.php');
+                header('location:http://localhost:8888/Simon/spotify_exercise/account.php');
                 exit;
             } else {
                 echo 'Password is incorrect.';

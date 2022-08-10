@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="results"></div>
+
+    <form method="post">
+      <input type="text" name="titl" placeholder="title" id="title" /><br />
+      <input type="date" name="release_date" placeholder="release date" /><br />
+      <input type="text" name="poster" placeholder="url" /><br />
+      <label for="select_artist">artist</label>
+      <select name="artists" id="select_artist">
+        <option value="">-----</option></select
+      ><br />
+      <label for="select_artist">category</label>
+      <select name="categories" id="select_category">
+        <option value="">-----</option>
+      </select>
+      <br />
+      <input type="submit" value="Insert" id="submitBtn" />
+    </form>
+    <div id="inserted"></div>
+    <script>
+      fetch("fetch_gategory.php", {
+        method: "post",
+      })
+        .then((categories) => categories.text())
+        .then(function (categories) {
+          document.getElementById("select_category").innerHTML = categories;
+        });
+      fetch("fetch_artists.php", {
+        method: "post",
+      })
+        .then((artists) => artists.text())
+        .then(function (artists) {
+          document.getElementById("select_artist").innerHTML = artists;
+        });
+
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          // Prevent the page to refresh
+          event.preventDefault();
+          let data = this;
+
+          fetch("insert_song.php", {
+            method: "post",
+            body: new FormData(data),
+          })
+            .then((res) => res.text())
+            .then(function (result) {
+              document.getElementById("inserted").innerHTML = result;
+            });
+        });
+        
+    </script>
+  </body>
+</html>

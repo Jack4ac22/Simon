@@ -1,0 +1,1 @@
+ajax will allow us to retrive php data by using java script

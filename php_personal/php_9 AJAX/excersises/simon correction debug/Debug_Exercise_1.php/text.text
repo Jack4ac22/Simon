@@ -1,0 +1,11 @@
+we start by checking the errors
+1- error with the typo
+
+2- result error
+
+3- then after being sure the php works, we check the console in the html file.
+error with the path.
+
+4- correting the correct targeted element with the event listner
+
+5- optimising the code: 
