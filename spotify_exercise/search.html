@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" method="get" name="search">
+      <label for="search">Search</label
+      ><input type="text" id="search" name="search" />
+    </form>
+    <div id="results"></div>
+<img src="" alt="">
+    <script>
+      
+      document
+        .querySelector("form")
+        .addEventListener("keyup", function (event) {
+          event.preventDefault();
+          let data = this;
+          fetch("search-songs.php", {
+            method: "post",
+            body: new FormData(data),
+          })
+            .then((res) => res.text())
+            .then(function (result) {
+              console.log(result);
+               document.getElementById('results').innerHTML = result;
+            });
+        });
+    </script>
+    <style>
+img {
+    width: 150px;
+
+        }
+    </style>
+  </body>
+</html>
