@@ -9,10 +9,10 @@ class Human
 
     function __construct($name, $hairColor, $gender, $height)
     {
-        $this->$name = $name;
-        $this->$hairColor = $hairColor;
-        $this->$gender = $gender;
-        $this->$height = $height;
+        $this->name = $name;
+        $this->hairColor = $hairColor;
+        $this->gender = $gender;
+        $this->height = $height;
     }
 
     function __toString()

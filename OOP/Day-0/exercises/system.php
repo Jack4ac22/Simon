@@ -3,5 +3,5 @@ require_once 'Human.php';
 $me = new Human('Jack', 'bold', 'male', 170);
 $someOne = new Human('Marco', 'grey', 'male', 175);
 
-echo $me->__toString();
-echo $someOne->__toString();
+echo $me;
+// echo $someOne->__toString();
