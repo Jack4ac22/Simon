@@ -17,10 +17,10 @@ class Human
 
     function __toString()
     {
-        return "Name is: $this->name<br>
-        Hair Color: $this->hairColor<br>
-        Gender: $this->gender<br>
-        Height: $this->height<br>";
+        return "<h1>Name is: $this->name</h1>
+        <p>Hair Color: $this->hairColor</p>
+        <p>Gender: $this->gender</p>
+        <p>Height: $this->height</p>";
     }
 }
 
