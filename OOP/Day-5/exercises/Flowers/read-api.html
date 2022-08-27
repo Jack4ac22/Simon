@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="results"></div>
+
+    <script>
+        fetch('flowers.php', {
+            method: 'get',
+        }).then(res => res.json())
+            .then(function (result) {
+                // Once the AJAX call was made
+                let div = document.getElementById('results');
+                let content = '';
+                // console.log(result);
+
+                result.forEach(flower => {
+                    console.log('Name : ' + flower.name);
+                    content += 'Name : ' + flower.name + "<br>";
+                });
+
+                document.getElementById('results').innerHTML = content;
+            });
+    </script>
+</body>
+
+</html>

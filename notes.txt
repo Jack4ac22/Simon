@@ -1,3 +1,0 @@
-echo mysql-error($connect) // shows the errors of the connection
-
-var_dump($_SERVER["QUERY_STRING]) // global variable that get the query from the url, which is after the question mark.
