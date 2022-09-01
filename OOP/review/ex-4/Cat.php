@@ -19,20 +19,22 @@ class Cat
 
     function __construct($name, $age,  $color, $sex, $breed)
     {
-        $this->Name = $name;
-        $this->Age = $age;
-        $this->Color = $color;
-        $this->Sex = $sex;
-        $this->Breed = $breed;
+        $this->set_name($name);
+        $this->set_age($age);
+        $this->set_color($color);
+        $this->set_sex($sex);
+        $this->set_breed($breed);
     }
 
     public function set_name($newName)
     {
         // Make sure the Name  (string - 3 to 20 characters)
-        if (is_string($newName) && (strlen($newName) < 20) && (strlen($newName) > 3))
+        if (is_string($newName) && (strlen($newName) < 20) && (strlen($newName) > 3)) {
+    
             $this->Name = $newName;
-        else
+        } else {
             echo 'Name must be a string';
+        }
     }
 
     public function set_color($newColor)
@@ -46,19 +48,20 @@ class Cat
     public function set_age($newAge)
     {
         // Make sure the Age (int)
-        if (is_integer($newAge))
-            $this->Age = $newAge;
+        if (is_numeric($newAge))
+            $this->Age = (int) $newAge;
         else
-            echo 'Color must be a string';
+        echo 'Age must be a Numeric';
     }
 
     public function set_sex($newSEX)
     {
         // Make sure the Color (string - 3 to 10 characters)
-        if (is_string($newSEX) && ($newSEX === 'male') && ($newSEX === 'female'))
+        if (is_string($newSEX) && (($newSEX === 'male') || ($newSEX === 'female')))
             $this->Sex = $newSEX;
+            
         else
-            echo 'Sex must be either male or female';
+            echo 'Sex must be either male or female' . $newSEX;
     }
 
     public function set_breed($newBreed)
@@ -67,7 +70,7 @@ class Cat
         if (is_string($newBreed) && (strlen($newBreed) < 20) && (strlen($newBreed) > 3))
             $this->Breed = $newBreed;
         else
-            echo 'Name must be a string';
+        echo 'Breed must be a string';
     }
 
 
@@ -84,5 +87,10 @@ class Cat
         );
 
         return $properties;
+    }
+    public function __tostring()
+    {
+        $data = $this->Name . $this->Age . $this->Color . $this->Sex . $this->Breed;
+        return $data;
     }
 }
